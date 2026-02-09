@@ -1,12 +1,10 @@
 # CRUD de tareas en fichero (Jakarta EE + WildFly)
 
-[Enunciado de la práctica (P5.3 - Informe RA3)](docs/DAW-U5-Practica003.md)
-
-Aplicación sencilla con API CRUD y una interfaz web básica para gestionar tareas. Los datos se almacenan en un fichero JSON dentro del directorio de datos de WildFly.
+Aplicacion sencilla con API CRUD y una interfaz web basica para gestionar tareas. Los datos se almacenan en un fichero JSON dentro del directorio de datos de WildFly.
 
 ## Funcionalidad
 - API REST `CRUD` para tareas.
-- Interfaz web básica (HTML + JS) para crear, editar, marcar y borrar.
+- Interfaz web basica (HTML + JS) para crear, editar, marcar y borrar.
 - Persistencia en fichero JSON.
 
 ## Endpoints
@@ -22,7 +20,7 @@ Ejemplo de payload:
 ```
 
 ## Probar la API con curl
-Base URL (si el WAR está desplegado en localhost):
+Base URL (si el WAR esta desplegado en localhost):
 `http://localhost:8080/crud-file/api/tasks`
 
 Listar tareas:
@@ -61,7 +59,7 @@ Por defecto se guarda en:
 Si necesitas otra ruta, puedes configurar la propiedad de sistema:
 `-Dtasks.file=/ruta/absoluta/tasks.json`
 
-## Construcción
+## Construccion
 Se usa Gradle.
 ```bash
 ./gradlew war
@@ -73,9 +71,9 @@ gradle war
 El WAR queda en `build/libs/crud-file.war`.
 
 ## Despliegue en WildFly (contenedor con otra app)
-Estos pasos siguen el mismo procedimiento de la práctica para levantar WildFly y luego desplegar este WAR en el mismo contenedor.
+Estos pasos siguen el mismo procedimiento de la practica para levantar WildFly y luego desplegar este WAR en el mismo contenedor.
 
-### Opción A: levantar contenedor desde cero
+### Opcion A: levantar contenedor desde cero
 #### 1) Preparar el entorno Docker
 ```bash
 docker --version
@@ -87,7 +85,7 @@ docker run -d --name wildfly -p 8080:8080 -p 9990:9990 quay.io/wildfly/wildfly:l
 docker ps
 ```
 
-#### 2) Crear usuario de administración en el contenedor
+#### 2) Crear usuario de administracion en el contenedor
 ```bash
 docker exec -it wildfly /opt/jboss/wildfly/bin/add-user.sh
 ```
@@ -98,7 +96,7 @@ docker restart wildfly
 Consola:
 - `http://localhost:9990`
 
-#### 3) Desplegar esta aplicación (WAR)
+#### 3) Desplegar esta aplicacion (WAR)
 Compila el WAR:
 ```bash
 ./gradlew war
@@ -108,8 +106,8 @@ Copia el WAR al contenedor:
 docker cp build/libs/crud-file.war wildfly:/opt/jboss/wildfly/standalone/deployments/
 ```
 
-### Opción B: contenedor ya levantado
-Si el contenedor ya está activo (por ejemplo con otra app desplegada), solo necesitas compilar y copiar el WAR.
+### Opcion B: contenedor ya levantado
+Si el contenedor ya esta activo (por ejemplo con otra app desplegada), solo necesitas compilar y copiar el WAR.
 
 1) Comprueba que el contenedor sigue activo:
 ```bash
@@ -126,7 +124,7 @@ docker ps
 docker cp build/libs/crud-file.war wildfly:/opt/jboss/wildfly/standalone/deployments/
 ```
 
-Tras el despliegue, la aplicación estará disponible en:
+Tras el despliegue, la aplicacion estara disponible en:
 - `http://localhost:8080/crud-file/`
 
 ## Notas sobre el contenedor
